@@ -13,6 +13,7 @@ const emit = defineEmits<{
 
 const isEditing = ref(false)
 const editedTitle = ref('')
+const showDeleteConfirm = ref(false)
 
 const startEdit = () => {
   isEditing.value = true
@@ -45,6 +46,19 @@ const handleKeydown = (event: KeyboardEvent) => {
   } else if (event.key === 'Escape') {
     cancelEdit()
   }
+}
+
+const confirmDelete = () => {
+  showDeleteConfirm.value = true
+}
+
+const handleDeleteConfirm = () => {
+  emit('delete', props.task.id)
+  showDeleteConfirm.value = false
+}
+
+const handleDeleteCancel = () => {
+  showDeleteConfirm.value = false
 }
 </script>
 
@@ -83,13 +97,23 @@ const handleKeydown = (event: KeyboardEvent) => {
         Edit
       </button>
       <button
-        @click="emit('delete', task.id)"
+        @click="confirmDelete"
         class="delete-button"
         :aria-label="`Delete ${task.title}`"
       >
         Delete
       </button>
     </div>
+    
+    <ConfirmModal
+      :show="showDeleteConfirm"
+      title="Delete Task"
+      :message="`Are you sure you want to delete &quot;${task.title}&quot;? This action cannot be undone.`"
+      confirm-text="Delete"
+      cancel-text="Cancel"
+      @confirm="handleDeleteConfirm"
+      @cancel="handleDeleteCancel"
+    />
   </div>
 </template>
 

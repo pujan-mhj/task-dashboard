@@ -8,8 +8,19 @@ export interface Task {
 const STORAGE_KEY = 'task-dashboard-tasks'
 const NEXT_ID_KEY = 'task-dashboard-next-id'
 
-const tasks = ref<Task[]>([])
+// Use a factory function to create isolated state for testing
+let tasks = ref<Task[]>([])
 let nextId = 1
+
+// Reset function for testing
+export const resetTaskState = () => {
+  tasks.value = []
+  nextId = 1
+  if (process.client) {
+    localStorage.removeItem(STORAGE_KEY)
+    localStorage.removeItem(NEXT_ID_KEY)
+  }
+}
 
 // Helper function to save tasks to localStorage
 const saveToLocalStorage = () => {

@@ -288,4 +288,53 @@ describe('Smoke Tests - Complete User Flows', () => {
       expect(tasks.value).toHaveLength(1)
     })
   })
+
+  describe('Task Filtering', () => {
+    it('should filter active tasks correctly', () => {
+      const { addTask, toggleTask, tasks } = useTasks()
+      
+      addTask('Task 1')
+      addTask('Task 2')
+      addTask('Task 3')
+      
+      toggleTask(tasks.value[0].id)
+      
+      const activeTasks = tasks.value.filter(t => !t.completed)
+      const completedTasks = tasks.value.filter(t => t.completed)
+      
+      expect(activeTasks).toHaveLength(2)
+      expect(completedTasks).toHaveLength(1)
+      expect(activeTasks[0].title).toBe('Task 2')
+      expect(activeTasks[1].title).toBe('Task 3')
+    })
+
+    it('should filter completed tasks correctly', () => {
+      const { addTask, toggleTask, tasks } = useTasks()
+      
+      addTask('Task 1')
+      addTask('Task 2')
+      addTask('Task 3')
+      
+      toggleTask(tasks.value[0].id)
+      toggleTask(tasks.value[2].id)
+      
+      const completedTasks = tasks.value.filter(t => t.completed)
+      
+      expect(completedTasks).toHaveLength(2)
+      expect(completedTasks[0].title).toBe('Task 1')
+      expect(completedTasks[1].title).toBe('Task 3')
+    })
+
+    it('should show all tasks when no filter applied', () => {
+      const { addTask, toggleTask, tasks } = useTasks()
+      
+      addTask('Task 1')
+      addTask('Task 2')
+      addTask('Task 3')
+      
+      toggleTask(tasks.value[1].id)
+      
+      expect(tasks.value).toHaveLength(3)
+    })
+  })
 })

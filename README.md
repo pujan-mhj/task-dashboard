@@ -4,11 +4,13 @@ A minimalist personal task management application built with Vue 3 and Nuxt 3.
 
 ## Features
 
-- ✅ Add, complete, and delete tasks
+- ✅ Add, complete, edit, and delete tasks
 - 📊 Real-time dashboard with task statistics
+- 🔍 Filter tasks by All / Active / Completed
 - 📱 Responsive design for desktop and mobile
 - ✨ Smooth animations and transitions
 - 🔌 API integration with JSONPlaceholder for initial data
+- 💾 LocalStorage persistence across sessions
 
 ## Tech Stack
 
@@ -30,8 +32,10 @@ task-dashboard/
 │   ├── TaskInput.vue
 │   ├── TaskItem.vue
 │   ├── TaskList.vue
+│   ├── TaskFilter.vue
 │   ├── SummaryCard.vue
-│   └── ProgressBar.vue
+│   ├── ProgressBar.vue
+│   └── ConfirmModal.vue
 ├── composables/        # Shared reactive state
 │   └── useTasks.ts    # Task management logic
 ├── layouts/            # Application layouts
@@ -84,9 +88,12 @@ npm run dev
 
 ### Tasks Page (`/tasks`)
 - Add new tasks using the input field
+- **Filter tasks** by All, Active, or Completed status
+- Filter buttons show real-time counts for each category
 - Mark tasks as complete/incomplete with checkboxes
-- Delete tasks with the delete button
-- Empty state message when no tasks exist
+- Edit tasks inline with keyboard shortcuts (Enter to save, Escape to cancel)
+- Delete tasks with confirmation modal
+- Empty state message when no tasks match the current filter
 
 ### About Page (`/about`)
 - Information about the application
@@ -98,7 +105,10 @@ npm run dev
 ### Task Management
 - Tasks are stored in reactive state using Vue's Composition API
 - State persists across page navigation within the session
-- Initial tasks are loaded from JSONPlaceholder API
+- LocalStorage persistence survives browser refreshes
+- Initial tasks are loaded from JSONPlaceholder API on first visit
+- **Filter tasks** by status: All, Active (incomplete), or Completed
+- Real-time count updates for each filter category
 
 ### Responsive Design
 - Mobile-first approach

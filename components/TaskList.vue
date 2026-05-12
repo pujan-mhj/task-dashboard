@@ -25,7 +25,11 @@ const emit = defineEmits<{
       />
     </TransitionGroup>
     <div v-if="tasks.length === 0" class="empty-state">
-      <p>No tasks yet — add one above!</p>
+      <svg class="empty-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+      </svg>
+      <p>No tasks found</p>
+      <p class="empty-hint">Try adding a new task or changing the filter</p>
     </div>
   </div>
 </template>
@@ -45,7 +49,23 @@ const emit = defineEmits<{
   text-align: center;
   padding: 3rem 1rem;
   color: #94a3b8;
+}
+
+.empty-icon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1rem;
+  color: #cbd5e1;
+}
+
+.empty-state p {
   font-size: 1.125rem;
+  margin: 0.5rem 0;
+}
+
+.empty-hint {
+  font-size: 0.875rem;
+  color: #cbd5e1;
 }
 
 .task-enter-active,

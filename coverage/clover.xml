@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1778574225271" clover="3.2.0">
+  <project timestamp="1778574225271" name="All files">
+    <metrics statements="169" coveredstatements="158" conditionals="71" coveredconditionals="60" methods="47" coveredmethods="43" elements="287" coveredelements="261" complexity="0" loc="169" ncloc="169" packages="2" files="7" classes="7"/>
+    <package name="components">
+      <metrics statements="90" coveredstatements="83" conditionals="47" coveredconditionals="40" methods="26" coveredmethods="22"/>
+      <file name="ConfirmModal.vue" path="/Users/pujanmaharjan/Desktop/NuxtVuePro/task-dashboard/components/ConfirmModal.vue">
+        <metrics statements="18" coveredstatements="15" conditionals="17" coveredconditionals="13" methods="8" coveredmethods="6"/>
+        <line num="2" count="18" type="stmt"/>
+        <line num="10" count="18" type="stmt"/>
+        <line num="16" count="18" type="stmt"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="22" count="18" type="stmt"/>
+        <line num="23" count="18" type="stmt"/>
+        <line num="26" count="18" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="32" count="19" type="stmt"/>
+        <line num="34" count="1" type="cond" truecount="3" falsecount="0"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="46" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="53" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="61" count="19" type="stmt"/>
+      </file>
+      <file name="ProgressBar.vue" path="/Users/pujanmaharjan/Desktop/NuxtVuePro/task-dashboard/components/ProgressBar.vue">
+        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+      </file>
+      <file name="SummaryCard.vue" path="/Users/pujanmaharjan/Desktop/NuxtVuePro/task-dashboard/components/SummaryCard.vue">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+      </file>
+      <file name="TaskFilter.vue" path="/Users/pujanmaharjan/Desktop/NuxtVuePro/task-dashboard/components/TaskFilter.vue">
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="15" count="8" type="stmt"/>
+        <line num="21" count="7" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="27" count="8" type="stmt"/>
+        <line num="28" count="24" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+      </file>
+      <file name="TaskInput.vue" path="/Users/pujanmaharjan/Desktop/NuxtVuePro/task-dashboard/components/TaskInput.vue">
+        <metrics statements="18" coveredstatements="18" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>
+        <line num="2" count="7" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="12" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="22" count="7" type="stmt"/>
+        <line num="23" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="30" count="18" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="33" count="5" type="stmt"/>
+        <line num="50" count="11" type="cond" truecount="2" falsecount="0"/>
+      </file>
+      <file name="TaskItem.vue" path="/Users/pujanmaharjan/Desktop/NuxtVuePro/task-dashboard/components/TaskItem.vue">
+        <metrics statements="37" coveredstatements="33" conditionals="20" coveredconditionals="17" methods="10" coveredmethods="8"/>
+        <line num="4" count="11" type="stmt"/>
+        <line num="8" count="11" type="stmt"/>
+        <line num="14" count="11" type="stmt"/>
+        <line num="15" count="11" type="stmt"/>
+        <line num="16" count="11" type="stmt"/>
+        <line num="18" count="11" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="24" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="30" count="11" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="cond" truecount="3" falsecount="1"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="38" count="11" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="43" count="11" type="stmt"/>
+        <line num="44" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="46" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="51" count="11" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="55" count="11" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="60" count="11" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="66" count="21" type="stmt"/>
+        <line num="71" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="81" count="2" type="stmt"/>
+        <line num="90" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="composables">
+      <metrics statements="79" coveredstatements="75" conditionals="24" coveredconditionals="20" methods="21" coveredmethods="21"/>
+      <file name="useTasks.ts" path="/Users/pujanmaharjan/Desktop/NuxtVuePro/task-dashboard/composables/useTasks.ts">
+        <metrics statements="79" coveredstatements="75" conditionals="24" coveredconditionals="20" methods="21" coveredmethods="21"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="29" type="stmt"/>
+        <line num="18" count="29" type="stmt"/>
+        <line num="19" count="29" type="cond" truecount="1" falsecount="1"/>
+        <line num="20" count="29" type="stmt"/>
+        <line num="21" count="29" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="27" count="181" type="cond" truecount="1" falsecount="1"/>
+        <line num="28" count="181" type="stmt"/>
+        <line num="29" count="5198" type="stmt"/>
+        <line num="33" count="181" type="stmt"/>
+        <line num="34" count="181" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="43" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="44" count="6" type="stmt"/>
+        <line num="45" count="6" type="stmt"/>
+        <line num="46" count="6" type="stmt"/>
+        <line num="49" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="50" count="3" type="stmt"/>
+        <line num="51" count="4" type="stmt"/>
+        <line num="56" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="57" count="3" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+        <line num="64" count="3" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="73" count="2" type="stmt"/>
+        <line num="74" count="32" type="stmt"/>
+        <line num="75" count="146" type="stmt"/>
+        <line num="76" count="146" type="cond" truecount="2" falsecount="0"/>
+        <line num="77" count="3" type="stmt"/>
+        <line num="80" count="143" type="stmt"/>
+        <line num="87" count="143" type="stmt"/>
+        <line num="88" count="143" type="stmt"/>
+        <line num="91" count="32" type="stmt"/>
+        <line num="92" count="39" type="stmt"/>
+        <line num="93" count="28" type="cond" truecount="2" falsecount="0"/>
+        <line num="94" count="27" type="stmt"/>
+        <line num="95" count="27" type="stmt"/>
+        <line num="99" count="32" type="stmt"/>
+        <line num="100" count="9" type="stmt"/>
+        <line num="101" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="102" count="6" type="stmt"/>
+        <line num="103" count="6" type="stmt"/>
+        <line num="107" count="32" type="stmt"/>
+        <line num="108" count="7" type="stmt"/>
+        <line num="109" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="110" count="3" type="stmt"/>
+        <line num="113" count="4" type="stmt"/>
+        <line num="114" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="115" count="3" type="stmt"/>
+        <line num="116" count="3" type="stmt"/>
+        <line num="117" count="3" type="stmt"/>
+        <line num="119" count="1" type="stmt"/>
+        <line num="122" count="32" type="stmt"/>
+        <line num="123" count="38" type="stmt"/>
+        <line num="126" count="32" type="stmt"/>
+        <line num="127" count="29" type="stmt"/>
+        <line num="130" count="32" type="stmt"/>
+        <line num="132" count="32" type="stmt"/>
+        <line num="133" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="134" count="6" type="stmt"/>
+        <line num="137" count="32" type="stmt"/>
+        <line num="139" count="6" type="stmt"/>
+        <line num="143" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="144" count="3" type="stmt"/>
+        <line num="148" count="3" type="stmt"/>
+        <line num="149" count="3" type="stmt"/>
+        <line num="151" count="2" type="stmt"/>
+        <line num="152" count="5" type="stmt"/>
+        <line num="160" count="2" type="stmt"/>
+        <line num="162" count="1" type="stmt"/>
+        <line num="167" count="32" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

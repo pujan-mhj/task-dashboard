@@ -1,23 +1,27 @@
 <script setup lang="ts">
-const colorMode = useColorMode()
+import { storeToRefs } from 'pinia'
+import { usePreferencesStore } from '~/stores/usePreferencesStore'
 
-const toggleTheme = () => {
-  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+const preferencesStore = usePreferencesStore()
+const { theme, isDarkMode } = storeToRefs(preferencesStore)
+
+const toggleTheme = (): void => {
+  // Simple toggle between light/dark while still allowing "system" via settings later
+  const next = isDarkMode.value ? 'light' : 'dark'
+  preferencesStore.setTheme(next)
 }
-
-const isDark = computed(() => colorMode.value === 'dark')
 </script>
 
 <template>
   <button
     @click="toggleTheme"
     class="theme-toggle"
-    :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
-    :title="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+    :aria-label="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+    :title="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
   >
     <!-- Sun icon for light mode -->
     <svg
-      v-if="isDark"
+      v-if="isDarkMode"
       class="theme-icon"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"

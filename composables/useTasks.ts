@@ -1,9 +1,5 @@
-export interface Task {
-  id: number
-  title: string
-  completed: boolean
-  createdAt: Date
-}
+// Deprecated composable retained for reference.
+// The app uses `useTaskStore` (Pinia) as the source of truth.
 
 const STORAGE_KEY = 'task-dashboard-tasks'
 const NEXT_ID_KEY = 'task-dashboard-next-id'

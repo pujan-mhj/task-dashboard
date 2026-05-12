@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Task } from '~/composables/useTasks'
+import type { Task } from '~/stores/useTaskStore'
 
 defineProps<{
   tasks: readonly Task[]

@@ -1,9 +1,25 @@
 <script setup lang="ts">
-const taskManager = useTasks()
+import { storeToRefs } from 'pinia'
+import { useTaskStore } from '~/stores/useTaskStore'
+import { useNotificationStore } from '~/stores/useNotificationStore'
+
+const taskStore = useTaskStore()
+
+const { totalCount, completedCount, pendingCount, completionPercentage } = storeToRefs(taskStore)
 
 // Load initial tasks on mount
-onMounted(() => {
-  taskManager.loadInitialTasks()
+onMounted(async () => {
+  await taskStore.fetchTasks()
+})
+
+// Watch for 100% completion and trigger celebration
+watch(completionPercentage, (newValue, oldValue) => {
+  if (newValue === 100 && oldValue !== 100 && totalCount.value > 0) {
+    const notificationStore = useNotificationStore()
+    notificationStore.notify('success', '🎉 All done! You completed all tasks!', {
+      duration: 5000
+    })
+  }
 })
 </script>
 
@@ -14,23 +30,23 @@ onMounted(() => {
     <div class="summary-grid">
       <SummaryCard 
         title="Total Tasks" 
-        :value="taskManager.totalCount.value" 
+        :value="totalCount" 
         color="#667eea"
       />
       <SummaryCard 
         title="Completed" 
-        :value="taskManager.completedCount.value" 
+        :value="completedCount" 
         color="#10b981"
       />
       <SummaryCard 
         title="Pending" 
-        :value="taskManager.pendingCount.value" 
+        :value="pendingCount" 
         color="#f59e0b"
       />
     </div>
 
     <div class="progress-section">
-      <ProgressBar :percentage="taskManager.completionPercentage.value" />
+      <ProgressBar :percentage="completionPercentage" />
     </div>
   </div>
 </template>

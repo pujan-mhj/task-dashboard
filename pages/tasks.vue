@@ -1,37 +1,30 @@
 <script setup lang="ts">
-import type { FilterType } from '~/components/TaskFilter.vue'
+import { storeToRefs } from 'pinia'
+import { useTaskStore } from '~/stores/useTaskStore'
+import { usePreferencesStore } from '~/stores/usePreferencesStore'
+import { useTaskSorting } from '~/composables/useTaskSorting'
 
-const taskManager = useTasks()
+const taskStore = useTaskStore()
+const preferencesStore = usePreferencesStore()
+
+const { totalCount, pendingCount, completedCount } = storeToRefs(taskStore)
+const { filterStatus } = storeToRefs(preferencesStore)
+
+// Use the sorting composable for filtered and sorted tasks
+const { sortedTasks } = useTaskSorting()
 
 // Load initial tasks on mount
-onMounted(() => {
-  taskManager.loadInitialTasks()
+onMounted(async () => {
+  await taskStore.fetchTasks()
 })
 
 const handleAddTask = (title: string) => {
-  taskManager.addTask(title)
+  taskStore.addTask(title)
 }
 
 const handleEditTask = (id: number, title: string) => {
-  taskManager.editTask(id, title)
+  taskStore.editTask(id, title)
 }
-
-// Filter state
-const currentFilter = ref<FilterType>('all')
-
-// Filtered tasks based on current filter
-const filteredTasks = computed(() => {
-  const allTasks = taskManager.tasks.value
-  
-  switch (currentFilter.value) {
-    case 'active':
-      return allTasks.filter(task => !task.completed)
-    case 'completed':
-      return allTasks.filter(task => task.completed)
-    default:
-      return allTasks
-  }
-})
 </script>
 
 <template>
@@ -40,17 +33,12 @@ const filteredTasks = computed(() => {
     
     <TaskInput @add="handleAddTask" />
     
-    <TaskFilter
-      v-model="currentFilter"
-      :total-count="taskManager.totalCount.value"
-      :active-count="taskManager.pendingCount.value"
-      :completed-count="taskManager.completedCount.value"
-    />
+    <FilterBar />
     
     <TaskList 
-      :tasks="filteredTasks" 
-      @toggle="taskManager.toggleTask"
-      @delete="taskManager.deleteTask"
+      :tasks="sortedTasks" 
+      @toggle="taskStore.toggleTask"
+      @delete="taskStore.deleteTask"
       @edit="handleEditTask"
     />
   </div>

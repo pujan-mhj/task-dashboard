@@ -8,6 +8,7 @@ defineProps<{
 const emit = defineEmits<{
   toggle: [id: number]
   delete: [id: number]
+  edit: [id: number, title: string]
 }>()
 </script>
 
@@ -20,6 +21,7 @@ const emit = defineEmits<{
         :task="task"
         @toggle="emit('toggle', $event)"
         @delete="emit('delete', $event)"
+        @edit="(id, title) => emit('edit', id, title)"
       />
     </TransitionGroup>
     <div v-if="tasks.length === 0" class="empty-state">

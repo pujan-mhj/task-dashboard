@@ -1,9 +1,9 @@
 <script setup lang="ts">
-const { totalCount, completedCount, pendingCount, completionPercentage, loadInitialTasks } = useTasks()
+const taskManager = useTasks()
 
 // Load initial tasks on mount
 onMounted(() => {
-  loadInitialTasks()
+  taskManager.loadInitialTasks()
 })
 </script>
 
@@ -14,23 +14,23 @@ onMounted(() => {
     <div class="summary-grid">
       <SummaryCard 
         title="Total Tasks" 
-        :value="totalCount" 
+        :value="taskManager.totalCount.value" 
         color="#667eea"
       />
       <SummaryCard 
         title="Completed" 
-        :value="completedCount" 
+        :value="taskManager.completedCount.value" 
         color="#10b981"
       />
       <SummaryCard 
         title="Pending" 
-        :value="pendingCount" 
+        :value="taskManager.pendingCount.value" 
         color="#f59e0b"
       />
     </div>
 
     <div class="progress-section">
-      <ProgressBar :percentage="completionPercentage" />
+      <ProgressBar :percentage="taskManager.completionPercentage.value" />
     </div>
   </div>
 </template>

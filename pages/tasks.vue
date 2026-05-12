@@ -1,13 +1,17 @@
 <script setup lang="ts">
-const { tasks, addTask, toggleTask, deleteTask, loadInitialTasks } = useTasks()
+const taskManager = useTasks()
 
 // Load initial tasks on mount
 onMounted(() => {
-  loadInitialTasks()
+  taskManager.loadInitialTasks()
 })
 
 const handleAddTask = (title: string) => {
-  addTask(title)
+  taskManager.addTask(title)
+}
+
+const handleEditTask = (id: number, title: string) => {
+  taskManager.editTask(id, title)
 }
 </script>
 
@@ -18,9 +22,10 @@ const handleAddTask = (title: string) => {
     <TaskInput @add="handleAddTask" />
     
     <TaskList 
-      :tasks="tasks" 
-      @toggle="toggleTask"
-      @delete="deleteTask"
+      :tasks="taskManager.tasks.value" 
+      @toggle="taskManager.toggleTask"
+      @delete="taskManager.deleteTask"
+      @edit="handleEditTask"
     />
   </div>
 </template>

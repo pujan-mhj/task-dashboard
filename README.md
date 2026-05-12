@@ -7,6 +7,7 @@ A minimalist personal task management application built with Vue 3 and Nuxt 3.
 - ✅ Add, complete, edit, and delete tasks
 - 📊 Real-time dashboard with task statistics
 - 🔍 Filter tasks by All / Active / Completed
+- 🌓 Dark mode with system preference detection
 - 📱 Responsive design for desktop and mobile
 - ✨ Smooth animations and transitions
 - 🔌 API integration with JSONPlaceholder for initial data
@@ -16,8 +17,9 @@ A minimalist personal task management application built with Vue 3 and Nuxt 3.
 
 - **Vue 3** - Progressive JavaScript framework with Composition API
 - **Nuxt 3** - Vue.js meta-framework with file-based routing
+- **@nuxtjs/color-mode** - Dark mode support with system preference detection
 - **TypeScript** - Type-safe JavaScript
-- **CSS3** - Modern styling with transitions and animations
+- **CSS3** - Modern styling with CSS variables and transitions
 
 ## Project Structure
 
@@ -33,6 +35,7 @@ task-dashboard/
 │   ├── TaskItem.vue
 │   ├── TaskList.vue
 │   ├── TaskFilter.vue
+│   ├── ThemeToggle.vue
 │   ├── SummaryCard.vue
 │   ├── ProgressBar.vue
 │   └── ConfirmModal.vue
@@ -115,11 +118,19 @@ npm run dev
 - Breakpoint at 768px for tablet/mobile devices
 - Touch-friendly interface elements
 
+### Dark Mode
+- **System preference detection** - Automatically matches your OS theme
+- **Manual toggle** - Click the sun/moon icon in the header to switch themes
+- **Persistent preference** - Your choice is saved in localStorage
+- **Smooth transitions** - All colors transition smoothly between themes
+- **CSS variables** - Consistent theming across all components
+
 ### Accessibility
 - Keyboard navigation support
 - ARIA labels for screen readers
 - Focus indicators for interactive elements
 - Color is not the sole indicator of status
+- High contrast in both light and dark modes
 
 ### Animations
 - Smooth page transitions

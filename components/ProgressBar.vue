@@ -25,10 +25,10 @@ defineProps<{
 
 <style scoped>
 .progress-container {
-  background: white;
+  background: var(--bg-secondary);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 .progress-header {
@@ -43,7 +43,7 @@ defineProps<{
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #64748b;
+  color: var(--text-tertiary);
 }
 
 .progress-percentage {
@@ -54,7 +54,7 @@ defineProps<{
 
 .progress-bar {
   height: 1rem;
-  background: #e2e8f0;
+  background: var(--bg-tertiary);
   border-radius: 9999px;
   overflow: hidden;
 }

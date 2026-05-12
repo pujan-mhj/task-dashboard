@@ -48,14 +48,14 @@ const emit = defineEmits<{
 .empty-state {
   text-align: center;
   padding: 3rem 1rem;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .empty-icon {
   width: 4rem;
   height: 4rem;
   margin: 0 auto 1rem;
-  color: #cbd5e1;
+  color: var(--border-hover);
 }
 
 .empty-state p {
@@ -65,7 +65,7 @@ const emit = defineEmits<{
 
 .empty-hint {
   font-size: 0.875rem;
-  color: #cbd5e1;
+  color: var(--border-hover);
 }
 
 .task-enter-active,

@@ -79,7 +79,7 @@ onUnmounted(() => {
 }
 
 .modal-container {
-  background: white;
+  background: var(--bg-secondary);
   border-radius: 12px;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   max-width: 400px;
@@ -89,14 +89,14 @@ onUnmounted(() => {
 
 .modal-header {
   padding: 1.5rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .modal-title {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--text-primary);
 }
 
 .modal-body {
@@ -105,13 +105,13 @@ onUnmounted(() => {
 
 .modal-body p {
   margin: 0;
-  color: #475569;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
 .modal-footer {
   padding: 1.5rem;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--border-color);
   display: flex;
   gap: 0.75rem;
   justify-content: flex-end;
@@ -128,12 +128,12 @@ onUnmounted(() => {
 }
 
 .btn-cancel {
-  background: #f1f5f9;
-  color: #475569;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
 }
 
 .btn-cancel:hover {
-  background: #e2e8f0;
+  background: var(--border-hover);
 }
 
 .btn-confirm {

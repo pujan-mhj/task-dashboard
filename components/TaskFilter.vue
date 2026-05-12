@@ -46,9 +46,9 @@ const selectFilter = (filter: FilterType) => {
   gap: 0.75rem;
   margin-bottom: 1.5rem;
   padding: 0.5rem;
-  background: white;
+  background: var(--bg-secondary);
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 .filter-button {
@@ -67,8 +67,8 @@ const selectFilter = (filter: FilterType) => {
 }
 
 .filter-button:hover {
-  background: #f8fafc;
-  border-color: #e2e8f0;
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
 }
 
 .filter-button.active {
@@ -89,7 +89,7 @@ const selectFilter = (filter: FilterType) => {
 }
 
 .filter-button:not(.active) .filter-label {
-  color: #64748b;
+  color: var(--text-tertiary);
 }
 
 .filter-count {
@@ -98,7 +98,7 @@ const selectFilter = (filter: FilterType) => {
 }
 
 .filter-button:not(.active) .filter-count {
-  color: #1e293b;
+  color: var(--text-primary);
 }
 
 .filter-button.active .filter-count {

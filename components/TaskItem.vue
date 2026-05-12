@@ -123,21 +123,21 @@ const handleDeleteCancel = () => {
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  background: white;
-  border: 2px solid #e2e8f0;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
   border-radius: 8px;
   transition: all 0.2s;
   gap: 0.75rem;
 }
 
 .task-item:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-color: var(--border-hover);
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 .task-item.completed {
   opacity: 0.6;
-  background: #f8fafc;
+  background: var(--bg-tertiary);
 }
 
 .task-checkbox-label {
@@ -165,7 +165,7 @@ const handleDeleteCancel = () => {
 
 .task-item.completed .task-title {
   text-decoration: line-through;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .edit-container {
@@ -180,6 +180,8 @@ const handleDeleteCancel = () => {
   border-radius: 6px;
   font-size: 1rem;
   outline: none;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 .button-group {

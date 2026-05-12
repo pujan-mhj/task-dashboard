@@ -5,11 +5,14 @@
   <header class="header">
     <div class="header-content">
       <h1 class="app-title">Task Dashboard</h1>
-      <nav class="nav">
-        <NuxtLink to="/" class="nav-link">Dashboard</NuxtLink>
-        <NuxtLink to="/tasks" class="nav-link">Tasks</NuxtLink>
-        <NuxtLink to="/about" class="nav-link">About</NuxtLink>
-      </nav>
+      <div class="header-right">
+        <nav class="nav">
+          <NuxtLink to="/" class="nav-link">Dashboard</NuxtLink>
+          <NuxtLink to="/tasks" class="nav-link">Tasks</NuxtLink>
+          <NuxtLink to="/about" class="nav-link">About</NuxtLink>
+        </nav>
+        <ThemeToggle />
+      </div>
     </div>
   </header>
 </template>
@@ -36,6 +39,12 @@
   margin: 0;
   font-size: 1.75rem;
   font-weight: 700;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .nav {
@@ -74,8 +83,13 @@
     font-size: 1.5rem;
   }
   
-  .nav {
+  .header-right {
     width: 100%;
+    justify-content: space-between;
+  }
+  
+  .nav {
+    flex: 1;
     justify-content: space-between;
   }
   

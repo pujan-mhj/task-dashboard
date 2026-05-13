@@ -7,11 +7,6 @@ const taskStore = useTaskStore()
 
 const { totalCount, completedCount, pendingCount, completionPercentage } = storeToRefs(taskStore)
 
-// Load initial tasks on mount
-onMounted(async () => {
-  await taskStore.fetchTasks()
-})
-
 // Watch for 100% completion and trigger celebration
 watch(completionPercentage, (newValue, oldValue) => {
   if (newValue === 100 && oldValue !== 100 && totalCount.value > 0) {

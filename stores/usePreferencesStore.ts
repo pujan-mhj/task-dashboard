@@ -1,4 +1,5 @@
-import { defineStore } from 'pinia'
+import { defineStore, skipHydrate } from 'pinia'
+import { watch } from 'vue'
 
 export type ThemeMode = 'light' | 'dark' | 'system'
 export type SortBy = 'date' | 'title' | 'status'
@@ -23,7 +24,8 @@ export const defaultPreferencesState: PreferencesState = {
 
 export const usePreferencesStore = defineStore('preferences', () => {
   // State
-  const theme = ref<ThemeMode>(defaultPreferencesState.theme)
+  // Omit from Nuxt payload so SSR defaults cannot overwrite before localStorage hydrate.
+  const theme = skipHydrate(ref<ThemeMode>(defaultPreferencesState.theme))
   const sortBy = ref<SortBy>(defaultPreferencesState.sortBy)
   const sortDirection = ref<SortDirection>(defaultPreferencesState.sortDirection)
   const filterStatus = ref<FilterStatus>(defaultPreferencesState.filterStatus)
@@ -103,11 +105,16 @@ export const usePreferencesStore = defineStore('preferences', () => {
     applyThemeToHtml(theme.value)
   }
 
-  // Initialize theme on client
+  // Keep <html class="dark"> in sync whenever theme changes (setTheme, localStorage hydrate, etc.)
   if (import.meta.client) {
-    applyThemeToHtml(theme.value)
-    
-    // Watch for system theme changes
+    watch(
+      theme,
+      (mode) => {
+        applyThemeToHtml(mode)
+      },
+      { immediate: true }
+    )
+
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
       if (theme.value === 'system') {
         applyThemeToHtml('system')

@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { defineStore, skipHydrate } from 'pinia'
 import { useNotificationStore } from './useNotificationStore'
 
 export interface Task {
@@ -17,7 +17,8 @@ export interface TaskState {
 
 export const useTaskStore = defineStore('tasks', () => {
   // State
-  const tasks = ref<Task[]>([])
+  // Omit from Nuxt Pinia payload so SSR empty state cannot overwrite client localStorage hydrate.
+  const tasks = skipHydrate(ref<Task[]>([]))
   const loading = ref(false)
   const error = ref<string | null>(null)
   const lastFetchedAt = ref<Date | null>(null)
@@ -208,6 +209,8 @@ export const useTaskStore = defineStore('tasks', () => {
     editTask,
     clearCompleted,
     reorderTasks,
+    // Needed by persistence plugin after hydrating tasks.
+    syncNextId,
     clearError,
     $reset
   }

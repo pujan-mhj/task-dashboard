@@ -10,7 +10,7 @@ describe('ProgressBar Component', () => {
       }
     })
     
-    expect(wrapper.find('.progress-percentage').text()).toBe('75%')
+    expect(wrapper.find('.td-progress__value').text()).toBe('75%')
   })
 
   it('should set progress bar width', () => {
@@ -20,7 +20,7 @@ describe('ProgressBar Component', () => {
       }
     })
     
-    const progressFill = wrapper.find('.progress-fill')
+    const progressFill = wrapper.find('.td-progress__fill')
     expect(progressFill.attributes('style')).toContain('width: 60%')
   })
 
@@ -31,8 +31,8 @@ describe('ProgressBar Component', () => {
       }
     })
     
-    expect(wrapper.find('.progress-percentage').text()).toBe('0%')
-    expect(wrapper.find('.progress-fill').attributes('style')).toContain('width: 0%')
+    expect(wrapper.find('.td-progress__value').text()).toBe('0%')
+    expect(wrapper.find('.td-progress__fill').attributes('style')).toContain('width: 0%')
   })
 
   it('should render 100% progress', () => {
@@ -42,8 +42,8 @@ describe('ProgressBar Component', () => {
       }
     })
     
-    expect(wrapper.find('.progress-percentage').text()).toBe('100%')
-    expect(wrapper.find('.progress-fill').attributes('style')).toContain('width: 100%')
+    expect(wrapper.find('.td-progress__value').text()).toBe('100%')
+    expect(wrapper.find('.td-progress__fill').attributes('style')).toContain('width: 100%')
   })
 
   it('should have proper ARIA attributes', () => {
@@ -53,7 +53,7 @@ describe('ProgressBar Component', () => {
       }
     })
     
-    const progressFill = wrapper.find('.progress-fill')
+    const progressFill = wrapper.find('.td-progress__fill')
     expect(progressFill.attributes('role')).toBe('progressbar')
     expect(progressFill.attributes('aria-valuenow')).toBe('50')
     expect(progressFill.attributes('aria-valuemin')).toBe('0')

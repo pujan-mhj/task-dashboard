@@ -46,7 +46,21 @@ watch(completionPercentage, (newValue, oldValue) => {
     </div>
 
     <div class="progress-section">
-      <ProgressBar :percentage="completionPercentage" />
+      <!-- Client-only: persisted task % differs from SSR (0%), hydration mismatch breaks scoped styles -->
+      <ClientOnly>
+        <ProgressBar :percentage="completionPercentage" />
+        <template #fallback>
+          <div class="td-progress td-progress--fallback" aria-hidden="true">
+            <div class="td-progress__header">
+              <span class="td-progress__label">Completion Progress</span>
+              <span class="td-progress__value">—</span>
+            </div>
+            <div class="td-progress__track">
+              <div class="td-progress__fill" style="width: 0%"></div>
+            </div>
+          </div>
+        </template>
+      </ClientOnly>
     </div>
   </div>
 </template>

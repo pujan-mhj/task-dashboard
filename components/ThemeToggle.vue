@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia'
 import { usePreferencesStore } from '~/stores/usePreferencesStore'
 
 const preferencesStore = usePreferencesStore()
-const { theme, isDarkMode } = storeToRefs(preferencesStore)
+const { isDarkMode } = storeToRefs(preferencesStore)
 
 const toggleTheme = (): void => {
   // Simple toggle between light/dark while still allowing "system" via settings later
@@ -15,14 +15,15 @@ const toggleTheme = (): void => {
 <template>
   <button
     @click="toggleTheme"
-    class="theme-toggle"
+    class="td-theme-toggle"
+    type="button"
     :aria-label="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
     :title="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
   >
     <!-- Sun icon for light mode -->
     <svg
       v-if="isDarkMode"
-      class="theme-icon"
+      class="td-theme-toggle__icon"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -39,7 +40,7 @@ const toggleTheme = (): void => {
     <!-- Moon icon for dark mode -->
     <svg
       v-else
-      class="theme-icon"
+      class="td-theme-toggle__icon"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -55,50 +56,3 @@ const toggleTheme = (): void => {
   </button>
 </template>
 
-<style scoped>
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-  color: white;
-}
-
-.theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
-
-.theme-toggle:active {
-  transform: scale(0.95);
-}
-
-.theme-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  transition: transform 0.3s ease;
-}
-
-.theme-toggle:hover .theme-icon {
-  transform: rotate(15deg);
-}
-
-@media (max-width: 768px) {
-  .theme-toggle {
-    width: 2.25rem;
-    height: 2.25rem;
-  }
-  
-  .theme-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-}
-</style>

@@ -4,6 +4,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   modules: ['@pinia/nuxt'],
+  vite: {
+    build: {
+      // One CSS bundle avoids route chunks loading after first paint (FOUC) on hard refresh.
+      cssCodeSplit: false
+    }
+  },
   app: {
     head: {
       title: 'Task Dashboard',

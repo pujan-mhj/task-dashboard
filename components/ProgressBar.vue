@@ -1,68 +1,32 @@
 <script setup lang="ts">
-defineProps<{
+import { computed } from 'vue'
+
+const props = defineProps<{
   percentage: number
 }>()
+
+const clampedPercentage = computed(() => {
+  const n = Number(props.percentage)
+  if (!Number.isFinite(n)) return 0
+  return Math.min(100, Math.max(0, Math.round(n)))
+})
 </script>
 
 <template>
-  <div class="progress-container">
-    <div class="progress-header">
-      <span class="progress-label">Completion Progress</span>
-      <span class="progress-percentage">{{ percentage }}%</span>
+  <div class="td-progress">
+    <div class="td-progress__header">
+      <span class="td-progress__label">Completion Progress</span>
+      <span class="td-progress__value">{{ clampedPercentage }}%</span>
     </div>
-    <div class="progress-bar">
-      <div 
-        class="progress-fill" 
-        :style="{ width: `${percentage}%` }"
+    <div class="td-progress__track">
+      <div
+        class="td-progress__fill"
+        :style="{ width: `${clampedPercentage}%` }"
         role="progressbar"
-        :aria-valuenow="percentage"
+        :aria-valuenow="clampedPercentage"
         aria-valuemin="0"
         aria-valuemax="100"
       ></div>
     </div>
   </div>
 </template>
-
-<style scoped>
-.progress-container {
-  background: var(--bg-secondary);
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px var(--shadow);
-}
-
-.progress-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.progress-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-tertiary);
-}
-
-.progress-percentage {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #667eea;
-}
-
-.progress-bar {
-  height: 1rem;
-  background: var(--bg-tertiary);
-  border-radius: 9999px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-  border-radius: 9999px;
-  transition: width 0.5s ease;
-}
-</style>

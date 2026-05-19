@@ -11,15 +11,13 @@ export interface PreferencesState {
   sortBy: SortBy
   sortDirection: SortDirection
   filterStatus: FilterStatus
-  sidebarCollapsed: boolean
 }
 
 export const defaultPreferencesState: PreferencesState = {
   theme: 'system',
   sortBy: 'date',
   sortDirection: 'desc',
-  filterStatus: 'all',
-  sidebarCollapsed: false
+  filterStatus: 'all'
 }
 
 export const usePreferencesStore = defineStore('preferences', () => {
@@ -29,7 +27,6 @@ export const usePreferencesStore = defineStore('preferences', () => {
   const sortBy = ref<SortBy>(defaultPreferencesState.sortBy)
   const sortDirection = ref<SortDirection>(defaultPreferencesState.sortDirection)
   const filterStatus = ref<FilterStatus>(defaultPreferencesState.filterStatus)
-  const sidebarCollapsed = ref<boolean>(defaultPreferencesState.sidebarCollapsed)
 
   // Getters
   const isDarkMode = computed(() => {
@@ -75,10 +72,6 @@ export const usePreferencesStore = defineStore('preferences', () => {
     applyThemeToHtml(newTheme)
   }
 
-  const toggleSidebar = (): void => {
-    sidebarCollapsed.value = !sidebarCollapsed.value
-  }
-
   const setSortBy = (field: SortBy, direction?: SortDirection): void => {
     sortBy.value = field
     if (direction) {
@@ -100,7 +93,6 @@ export const usePreferencesStore = defineStore('preferences', () => {
     sortBy.value = defaultPreferencesState.sortBy
     sortDirection.value = defaultPreferencesState.sortDirection
     filterStatus.value = defaultPreferencesState.filterStatus
-    sidebarCollapsed.value = defaultPreferencesState.sidebarCollapsed
 
     applyThemeToHtml(theme.value)
   }
@@ -128,7 +120,6 @@ export const usePreferencesStore = defineStore('preferences', () => {
     sortBy,
     sortDirection,
     filterStatus,
-    sidebarCollapsed,
     
     // Getters
     isDarkMode,
@@ -136,7 +127,6 @@ export const usePreferencesStore = defineStore('preferences', () => {
     
     // Actions
     setTheme,
-    toggleSidebar,
     setSortBy: setSortByFieldAndDirection,
     setFilter,
     resetDefaults

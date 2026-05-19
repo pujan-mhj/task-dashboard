@@ -1,7 +1,6 @@
 import { storeToRefs } from 'pinia'
 import { useTaskStore } from '~/stores/useTaskStore'
 import { usePreferencesStore } from '~/stores/usePreferencesStore'
-import type { Task } from '~/stores/useTaskStore'
 
 export const useTaskSorting = () => {
   const taskStore = useTaskStore()

@@ -161,15 +161,6 @@ export const useTaskStore = defineStore('tasks', () => {
     }
   }
 
-  const reorderTasks = (fromIndex: number, toIndex: number): void => {
-    if (fromIndex < 0 || fromIndex >= tasks.value.length || 
-        toIndex < 0 || toIndex >= tasks.value.length) {
-      return
-    }
-
-    const [movedTask] = tasks.value.splice(fromIndex, 1)
-    tasks.value.splice(toIndex, 0, movedTask)
-  }
 
   const clearError = (): void => {
     error.value = null
@@ -208,7 +199,6 @@ export const useTaskStore = defineStore('tasks', () => {
     deleteTask,
     editTask,
     clearCompleted,
-    reorderTasks,
     // Needed by persistence plugin after hydrating tasks.
     syncNextId,
     clearError,

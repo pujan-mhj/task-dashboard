@@ -1,14 +1,8 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
 import { useTaskStore } from '~/stores/useTaskStore'
-import { usePreferencesStore } from '~/stores/usePreferencesStore'
 import { useTaskSorting } from '~/composables/useTaskSorting'
 
 const taskStore = useTaskStore()
-const preferencesStore = usePreferencesStore()
-
-const { totalCount, pendingCount, completedCount } = storeToRefs(taskStore)
-const { filterStatus } = storeToRefs(preferencesStore)
 
 // Use the sorting composable for filtered and sorted tasks
 const { sortedTasks } = useTaskSorting()

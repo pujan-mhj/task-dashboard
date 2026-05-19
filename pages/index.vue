@@ -22,23 +22,33 @@ watch(completionPercentage, (newValue, oldValue) => {
   <div class="dashboard-page">
     <h2 class="page-title">Dashboard</h2>
     
-    <div class="summary-grid">
-      <SummaryCard 
-        title="Total Tasks" 
-        :value="totalCount" 
-        color="#667eea"
-      />
-      <SummaryCard 
-        title="Completed" 
-        :value="completedCount" 
-        color="#10b981"
-      />
-      <SummaryCard 
-        title="Pending" 
-        :value="pendingCount" 
-        color="#f59e0b"
-      />
-    </div>
+    <!-- Client-only: persisted task counts differ from SSR (empty store), hydration mismatch on SummaryCard -->
+    <ClientOnly>
+      <div class="summary-grid">
+        <SummaryCard
+          title="Total Tasks"
+          :value="totalCount"
+          color="#667eea"
+        />
+        <SummaryCard
+          title="Completed"
+          :value="completedCount"
+          color="#10b981"
+        />
+        <SummaryCard
+          title="Pending"
+          :value="pendingCount"
+          color="#f59e0b"
+        />
+      </div>
+      <template #fallback>
+        <div class="summary-grid" aria-hidden="true">
+          <SummaryCard title="Total Tasks" value="—" color="#667eea" />
+          <SummaryCard title="Completed" value="—" color="#10b981" />
+          <SummaryCard title="Pending" value="—" color="#f59e0b" />
+        </div>
+      </template>
+    </ClientOnly>
 
     <div class="progress-section">
       <!-- Client-only: persisted task % differs from SSR (0%), hydration mismatch breaks scoped styles -->

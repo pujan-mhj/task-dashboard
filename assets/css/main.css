@@ -71,6 +71,110 @@ body {
   outline-offset: 2px;
 }
 
+/* Dashboard completion progress (global so it always loads with entry CSS on hard refresh) */
+.td-progress {
+  background: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.td-progress__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.td-progress__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+}
+
+.td-progress__value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.td-progress__track {
+  height: 1rem;
+  background: var(--bg-tertiary);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.td-progress__fill {
+  height: 100%;
+  min-width: 0;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 9999px;
+  transition: width 0.5s ease;
+}
+
+.td-progress--fallback .td-progress__value {
+  opacity: 0.45;
+}
+
+/* Header theme control (global: matches ClientOnly fallback + avoids hydration/scoped churn) */
+.td-theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  color: white;
+}
+
+.td-theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.td-theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.td-theme-toggle__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.td-theme-toggle:hover .td-theme-toggle__icon {
+  transform: rotate(15deg);
+}
+
+.td-theme-toggle--fallback {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  box-sizing: border-box;
+  cursor: default;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .td-theme-toggle {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .td-theme-toggle__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
 /* Utility Classes */
 .sr-only {
   position: absolute;

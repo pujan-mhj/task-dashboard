@@ -11,7 +11,12 @@
           <NuxtLink to="/tasks" class="nav-link">Tasks</NuxtLink>
           <NuxtLink to="/about" class="nav-link">About</NuxtLink>
         </nav>
-        <ThemeToggle />
+        <ClientOnly>
+          <ThemeToggle />
+          <template #fallback>
+            <span class="td-theme-toggle td-theme-toggle--fallback" aria-hidden="true" />
+          </template>
+        </ClientOnly>
       </div>
     </div>
   </header>

@@ -1,37 +1,24 @@
 <script setup lang="ts">
-import type { FilterType } from '~/components/TaskFilter.vue'
+import { useTaskStore } from '~/stores/useTaskStore'
+import { useTaskSorting } from '~/composables/useTaskSorting'
 
-const taskManager = useTasks()
+const taskStore = useTaskStore()
+
+// Use the sorting composable for filtered and sorted tasks
+const { sortedTasks } = useTaskSorting()
 
 // Load initial tasks on mount
-onMounted(() => {
-  taskManager.loadInitialTasks()
+onMounted(async () => {
+  await taskStore.fetchTasks()
 })
 
 const handleAddTask = (title: string) => {
-  taskManager.addTask(title)
+  taskStore.addTask(title)
 }
 
 const handleEditTask = (id: number, title: string) => {
-  taskManager.editTask(id, title)
+  taskStore.editTask(id, title)
 }
-
-// Filter state
-const currentFilter = ref<FilterType>('all')
-
-// Filtered tasks based on current filter
-const filteredTasks = computed(() => {
-  const allTasks = taskManager.tasks.value
-  
-  switch (currentFilter.value) {
-    case 'active':
-      return allTasks.filter(task => !task.completed)
-    case 'completed':
-      return allTasks.filter(task => task.completed)
-    default:
-      return allTasks
-  }
-})
 </script>
 
 <template>
@@ -40,19 +27,27 @@ const filteredTasks = computed(() => {
     
     <TaskInput @add="handleAddTask" />
     
-    <TaskFilter
-      v-model="currentFilter"
-      :total-count="taskManager.totalCount.value"
-      :active-count="taskManager.pendingCount.value"
-      :completed-count="taskManager.completedCount.value"
-    />
-    
-    <TaskList 
-      :tasks="filteredTasks" 
-      @toggle="taskManager.toggleTask"
-      @delete="taskManager.deleteTask"
-      @edit="handleEditTask"
-    />
+    <!-- Sort/filter state is hydrated from localStorage; SSR HTML will not match and causes hydration warnings. -->
+    <ClientOnly>
+      <FilterBar />
+      
+      <TaskList 
+        :tasks="sortedTasks" 
+        @toggle="taskStore.toggleTask"
+        @delete="taskStore.deleteTask"
+        @edit="handleEditTask"
+      />
+      <template #fallback>
+        <div class="tasks-fallback" aria-hidden="true">
+          <div class="tasks-fallback__bar" />
+          <div class="tasks-fallback__list">
+            <div class="tasks-fallback__item" />
+            <div class="tasks-fallback__item" />
+            <div class="tasks-fallback__item" />
+          </div>
+        </div>
+      </template>
+    </ClientOnly>
   </div>
 </template>
 
@@ -66,6 +61,28 @@ const filteredTasks = computed(() => {
   font-weight: 700;
   color: var(--text-primary);
   margin: 0 0 2rem 0;
+}
+
+.tasks-fallback__bar {
+  height: 5.5rem;
+  border-radius: 0.75rem;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin: 1.5rem 0;
+}
+
+.tasks-fallback__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tasks-fallback__item {
+  height: 4.25rem;
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
 }
 
 @keyframes fadeIn {

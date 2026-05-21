@@ -4,6 +4,7 @@
     <main class="main-content">
       <slot />
     </main>
+    <ToastContainer />
   </div>
 </template>
 

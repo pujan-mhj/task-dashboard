@@ -1,9 +1,20 @@
 <script setup lang="ts">
-const taskManager = useTasks()
+import { storeToRefs } from 'pinia'
+import { useTaskStore } from '~/stores/useTaskStore'
+import { useNotificationStore } from '~/stores/useNotificationStore'
 
-// Load initial tasks on mount
-onMounted(() => {
-  taskManager.loadInitialTasks()
+const taskStore = useTaskStore()
+
+const { totalCount, completedCount, pendingCount, completionPercentage } = storeToRefs(taskStore)
+
+// Watch for 100% completion and trigger celebration
+watch(completionPercentage, (newValue, oldValue) => {
+  if (newValue === 100 && oldValue !== 100 && totalCount.value > 0) {
+    const notificationStore = useNotificationStore()
+    notificationStore.notify('success', '🎉 All done! You completed all tasks!', {
+      duration: 5000
+    })
+  }
 })
 </script>
 
@@ -11,26 +22,50 @@ onMounted(() => {
   <div class="dashboard-page">
     <h2 class="page-title">Dashboard</h2>
     
-    <div class="summary-grid">
-      <SummaryCard 
-        title="Total Tasks" 
-        :value="taskManager.totalCount.value" 
-        color="#667eea"
-      />
-      <SummaryCard 
-        title="Completed" 
-        :value="taskManager.completedCount.value" 
-        color="#10b981"
-      />
-      <SummaryCard 
-        title="Pending" 
-        :value="taskManager.pendingCount.value" 
-        color="#f59e0b"
-      />
-    </div>
+    <!-- Client-only: persisted task counts differ from SSR (empty store), hydration mismatch on SummaryCard -->
+    <ClientOnly>
+      <div class="summary-grid">
+        <SummaryCard
+          title="Total Tasks"
+          :value="totalCount"
+          color="#667eea"
+        />
+        <SummaryCard
+          title="Completed"
+          :value="completedCount"
+          color="#10b981"
+        />
+        <SummaryCard
+          title="Pending"
+          :value="pendingCount"
+          color="#f59e0b"
+        />
+      </div>
+      <template #fallback>
+        <div class="summary-grid" aria-hidden="true">
+          <SummaryCard title="Total Tasks" value="—" color="#667eea" />
+          <SummaryCard title="Completed" value="—" color="#10b981" />
+          <SummaryCard title="Pending" value="—" color="#f59e0b" />
+        </div>
+      </template>
+    </ClientOnly>
 
     <div class="progress-section">
-      <ProgressBar :percentage="taskManager.completionPercentage.value" />
+      <!-- Client-only: persisted task % differs from SSR (0%), hydration mismatch breaks scoped styles -->
+      <ClientOnly>
+        <ProgressBar :percentage="completionPercentage" />
+        <template #fallback>
+          <div class="td-progress td-progress--fallback" aria-hidden="true">
+            <div class="td-progress__header">
+              <span class="td-progress__label">Completion Progress</span>
+              <span class="td-progress__value">—</span>
+            </div>
+            <div class="td-progress__track">
+              <div class="td-progress__fill" style="width: 0%"></div>
+            </div>
+          </div>
+        </template>
+      </ClientOnly>
     </div>
   </div>
 </template>

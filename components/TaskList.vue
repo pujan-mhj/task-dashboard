@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Task } from '~/composables/useTasks'
+import type { Task } from '~/stores/useTaskStore'
 
 defineProps<{
   tasks: readonly Task[]
@@ -10,14 +10,18 @@ const emit = defineEmits<{
   delete: [id: number]
   edit: [id: number, title: string]
 }>()
+
+// `TransitionGroup` relies on unique keys. If task IDs are ever duplicated
+// (e.g. due to persisted state), using index here prevents UI stacking.
+const taskKey = (task: Task, index: number) => `${task.id}-${index}`
 </script>
 
 <template>
   <div class="task-list">
     <TransitionGroup name="task" tag="div" class="task-list-container">
       <TaskItem
-        v-for="task in tasks"
-        :key="task.id"
+        v-for="(task, index) in tasks"
+        :key="taskKey(task, index)"
         :task="task"
         @toggle="emit('toggle', $event)"
         @delete="emit('delete', $event)"
